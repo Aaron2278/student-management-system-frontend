@@ -5,14 +5,18 @@ import Button from '@mui/material/Button';
 
 export default function Student() {
   const paperStyle = { padding: '50px 20px', width: 600, margin: '20px auto' };
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+  const [addName, setAddName] = useState('');
+  const [addAddress, setAddAddress] = useState('');
+  const [updateName, setUpdateName] = useState('');
+  const [updateAddress, setUpdateAddress] = useState('');
   const [students, setStudents] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
+  const [searchName, setSearchName] = useState('');
+  const [searchResult, setSearchResult] = useState('');
 
   const handleAddClick = (e) => {
     e.preventDefault();
-    const student = { name, address };
+    const student = { name: addName, address: addAddress };
     console.log(student);
     fetch("http://localhost:8080/student/add", {
       method: "POST",
@@ -20,32 +24,30 @@ export default function Student() {
       body: JSON.stringify(student),
     }).then(() => {
       console.log("New student added");
-      // Fetch the updated student list after addition
       fetch("http://localhost:8080/student/getAll")
         .then(res => res.json())
         .then((result) => {
           setStudents(result);
-          setName('');
-          setAddress('');
+          setAddName('');
+          setAddAddress('');
         });
     });
   };
 
   const handleUpdateClick = () => {
-    const updatedStudent = { name, address };
+    const updatedStudent = { name: updateName, address: updateAddress };
     fetch(`http://localhost:8080/student/update/${selectedStudentId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedStudent),
     }).then(() => {
       console.log("Student updated");
-      // Fetch the updated student list after update
       fetch("http://localhost:8080/student/getAll")
         .then(res => res.json())
         .then((result) => {
           setStudents(result);
-          setName('');
-          setAddress('');
+          setUpdateName('');
+          setUpdateAddress('');
           setSelectedStudentId(null);
         });
     });
@@ -53,28 +55,40 @@ export default function Student() {
 
   const handleUpdate = (id) => {
     setSelectedStudentId(id);
-    // Fetch the existing student details and populate the form
     fetch(`http://localhost:8080/student/${id}`)
       .then(res => res.json())
       .then(result => {
-        setName(result.name);
-        setAddress(result.address);
+        setUpdateName(result.name);
+        setUpdateAddress(result.address);
       });
   };
 
   const handleDelete = (id) => {
-    // Delete the student
     fetch(`http://localhost:8080/student/delete/${id}`, {
       method: "DELETE",
     }).then(() => {
       console.log("Student deleted");
-      // Fetch the updated student list after deletion
       fetch("http://localhost:8080/student/getAll")
         .then(res => res.json())
         .then((result) => {
           setStudents(result);
         });
     });
+  };
+
+  const handleSearchClick = () => {
+    // Fetch the search result from the backend
+    fetch(`http://localhost:8080/student/search?name=${searchName}`)
+      .then(res => res.json())
+      .then(result => {
+        setSearchResult(result.message);
+        if (result.student) {
+          
+          console.log("Student found:", result.student);
+        } else {
+          console.log("Student not found");
+        }
+      });
   };
 
   useEffect(() => {
@@ -89,7 +103,6 @@ export default function Student() {
     <Container>
       <Paper elevation={3} style={paperStyle}>
         <h1 style={{ color: "blue" }}><u>Add Student</u></h1>
-
         <Box
           component="form"
           sx={{
@@ -99,12 +112,12 @@ export default function Student() {
           autoComplete="off"
         >
           <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={addName}
+            onChange={(e) => setAddName(e.target.value)}
           />
           <TextField id="outlined-basic" label="Student Address" variant="outlined" fullWidth
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={addAddress}
+            onChange={(e) => setAddAddress(e.target.value)}
           />
           <Button variant="contained" color="secondary" onClick={handleAddClick}>
             Add Student
@@ -115,7 +128,6 @@ export default function Student() {
       {selectedStudentId && (
         <Paper elevation={3} style={paperStyle}>
           <h1 style={{ color: "blue" }}><u>Update Student</u></h1>
-
           <Box
             component="form"
             sx={{
@@ -125,12 +137,12 @@ export default function Student() {
             autoComplete="off"
           >
             <TextField id="outlined-basic" label="Student Name" variant="outlined" fullWidth
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={updateName}
+              onChange={(e) => setUpdateName(e.target.value)}
             />
             <TextField id="outlined-basic" label="Student Address" variant="outlined" fullWidth
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={updateAddress}
+              onChange={(e) => setUpdateAddress(e.target.value)}
             />
             <Button variant="contained" color="primary" onClick={handleUpdateClick}>
               Update Student
@@ -138,6 +150,31 @@ export default function Student() {
           </Box> 
         </Paper>
       )}
+
+      <Paper elevation={3} style={paperStyle}>
+        <h1 style={{ color: "blue" }}><u>Search Student</u></h1>
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="outlined-basic"
+            label="Student Name for Search"
+            variant="outlined"
+            fullWidth
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
+          />
+          <Button variant="contained" color="primary" onClick={handleSearchClick}>
+            Search Student
+          </Button>
+          <p>{searchResult}</p>
+        </Box>
+      </Paper>
 
       <h1>Students</h1>
       <Paper elevation={3} style={paperStyle}>
