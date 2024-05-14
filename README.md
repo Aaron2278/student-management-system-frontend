@@ -56,7 +56,7 @@ npm install
 
 Make sure your backend server is running on http://localhost:8080 and is connected to a MySQL database. Follow the instructions for your backend server to start it and ensure it is properly connected to the MySQL database.
 
-Start the MySQL server
+**Start the MySQL server**
 
 Ensure your MySQL server is running and properly configured with the necessary database and tables for the backend server to interact with.
 
