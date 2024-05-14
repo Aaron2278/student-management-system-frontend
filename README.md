@@ -32,16 +32,16 @@ The Student Management System is a React application that allows users to manage
 
 If you do not have npm installed, follow the instructions below to install it. Otherwise, skip to the next step.
 
-Installing npm
+## Installing npm
 
 npm is distributed with Node.js which means that when you download Node.js, you automatically get npm installed on your computer.
 
-Windows & MacOS:
+**Windows & MacOS:**
 
 Download the installer from the Node.js website.
 Run the installer and follow the steps.
 
-Linux:
+**Linux:**
 
 Use your terminal to install Node.js and npm by running the following commands:
 
@@ -52,7 +52,7 @@ After installing npm, run the following command to install the necessary depende
 
 npm install
 
-Ensure the backend server is running
+3. **Ensure the backend server is running**
 
 Make sure your backend server is running on http://localhost:8080 and is connected to a MySQL database. Follow the instructions for your backend server to start it and ensure it is properly connected to the MySQL database.
 
