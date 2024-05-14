@@ -65,3 +65,12 @@ Ensure your MySQL server is running and properly configured with the necessary d
 In the terminal, run the following command:
 
 npm start
+
+## Technologies Used
+
+* React
+* Material-UI
+* Node.js
+* Express (backend server)
+* MySQL (database)
+
