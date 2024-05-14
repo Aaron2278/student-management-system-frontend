@@ -1,71 +1,67 @@
-# Getting Started with Create React App
+# Student Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Student Management System is a React application that allows users to manage student data. Users can add, update, search, and delete student records. The application relies on a backend server and a MySQL database for persistence.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Add new student records
+- Update existing student records
+- Search for students by name
+- Delete student records
+- Display a list of all students
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) (v14.0.0 or higher)
+- [npm](https://www.npmjs.com/) (v6.0.0 or higher)
+- [Visual Studio Code](https://code.visualstudio.com/) or any other code editor
+- Backend server (running on `http://localhost:8080`)
+- MySQL server (running and configured)
 
-### `npm test`
+### Steps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/your-username/student-management-system.git
+   cd student-management-system
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you do not have npm installed, follow the instructions below to install it. Otherwise, skip to the next step.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Installing npm
 
-### `npm run eject`
+npm is distributed with Node.js which means that when you download Node.js, you automatically get npm installed on your computer.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Windows & MacOS:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Download the installer from the Node.js website.
+Run the installer and follow the steps.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Linux:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Use your terminal to install Node.js and npm by running the following commands:
 
-## Learn More
+sudo apt update
+sudo apt install nodejs npm
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After installing npm, run the following command to install the necessary dependencies for the project:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm install
 
-### Code Splitting
+Ensure the backend server is running
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Make sure your backend server is running on http://localhost:8080 and is connected to a MySQL database. Follow the instructions for your backend server to start it and ensure it is properly connected to the MySQL database.
 
-### Analyzing the Bundle Size
+Start the MySQL server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Ensure your MySQL server is running and properly configured with the necessary database and tables for the backend server to interact with.
 
-### Making a Progressive Web App
+**Start the React application**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+In the terminal, run the following command:
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# student-management-system-frontend
+npm start
